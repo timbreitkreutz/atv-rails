@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     atv-rails (0.0.2)
-      rails (>= 8.0.1)
+      railties (>= 6.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -225,6 +225,7 @@ PLATFORMS
 DEPENDENCIES
   atv-rails!
   puma
+  rails (~> 8.0.1)
   rubocop-rails-omakase
   sqlite3
 
