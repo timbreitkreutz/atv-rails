@@ -1,4 +1,4 @@
-module Atv
+module ATV
   module Rails
     class Railtie < ::Rails::Railtie
     end

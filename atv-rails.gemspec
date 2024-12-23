@@ -2,7 +2,7 @@ require_relative "lib/atv/rails/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "atv-rails"
-  spec.version     = Atv::Rails::VERSION
+  spec.version     = ATV::Rails::VERSION
   spec.authors     = [ "Timothy Breitkreutz" ]
   spec.email       = [ "tim@sbrew.com" ]
   spec.homepage    = "https://www.sbrew.com/atv"

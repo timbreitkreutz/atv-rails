@@ -1,4 +1,4 @@
-# Atv::Rails
+# ATV::Rails
 Short description and motivation.
 
 ## Usage
