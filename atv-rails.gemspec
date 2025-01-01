@@ -1,8 +1,8 @@
-require_relative "lib/atv/rails/version"
+require_relative "lib/atv/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "atv-rails"
-  spec.version     = ATV::Rails::VERSION
+  spec.version     = ATV::VERSION
   spec.authors     = [ "Timothy Breitkreutz" ]
   spec.email       = [ "tim@sbrew.com" ]
   spec.homepage    = "https://www.sbrew.com/atv"
@@ -17,5 +17,7 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
-  spec.add_dependency "railties", ">= 6.0.1"
+  spec.add_dependency "railties", ">= 7.0.0"
+  spec.add_dependency "stimulus-rails", ">= 1.3.0"
+  spec.add_dependency "importmap-rails", ">= 2.0.0"
 end

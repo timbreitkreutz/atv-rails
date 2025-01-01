@@ -1,8 +1,8 @@
-# ATV::Rails
-Short description and motivation.
+# ATV
+JavaScript for Rails Curmudgeons.
 
 ## Usage
-How to use my plugin.
+TBD
 
 ## Installation
 Add this line to your application's Gemfile:

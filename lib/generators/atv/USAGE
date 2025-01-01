@@ -1,0 +1,14 @@
+Description:
+============
+    Generates a new ATV controller at the passed path.
+
+Examples:
+=========
+    bin/rails generate atv chat
+
+    creates: app/javascript/controllers/chat_atv.js
+
+
+    bin/rails generate stimulus nested/chat
+
+    creates: app/javascript/controllers/nested/chat_atv.js

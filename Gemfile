@@ -9,9 +9,12 @@ gem "sqlite3"
 
 # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
 gem "rubocop-rails-omakase", require: false
+gem "railties"
 
 # Start debugger with binding.b [https://github.com/ruby/debug]
 # gem "debug", ">= 1.0.0"
 
-rails_version = ENV["RAILS_VERSION"] || "8.0.1"
-gem "rails", "~> #{rails_version}"
+group :test do
+  gem "actionmailer"
+  gem "activestorage"
+end

@@ -1,0 +1,13 @@
+function connect(targets, values, element, controllers) {
+  return (function() {
+    // Object contains named methods plus disconnect, and target backs.
+    return {
+      click: function(actor, event, params) {
+      },
+      disconnect: function() {
+      }
+    }
+  });
+};
+
+export { connect };

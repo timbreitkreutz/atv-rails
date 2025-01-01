@@ -32,7 +32,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-const version = "0.1.8";
+const version = "0.1.9";
 
 // To dynamically load up the ATV javascripts if needed
 function importMap() {
@@ -231,7 +231,6 @@ function attributesFor(element, type) {
 }
 
 const allControllerNames = new Set();
-const allEventListeners = new Map();
 const allTargets = new Map();
 let allControllers = new Map();
 
@@ -370,9 +369,15 @@ function activate(prefix = "atv") {
             ) {
               const callbacks = controllers.get(action.controller).getActions();
               const callback = callbacks[action.method];
+              let result;
               if (callback) {
-                const result = callback(event.target, event, action.parameters);
+                try {
+                  result = callback(event.target, event, action.parameters);
+                } catch (error) {
+                  console.error(`ATV ${prefix}: ${eventName}->${name}`, error);
+                }
                 if (result === false) {
+                  event.stopPropagation();
                   return;
                 }
               }
@@ -381,14 +386,9 @@ function activate(prefix = "atv") {
               return invokeNext(event, actions.slice(1));
             }
           }
-
-          const handler = (event) => invokeNext(event, list);
-          const events = findOrInitalize(allEventListeners, prefix, element);
-          if (events.get(eventName)) {
-            return;
-          }
-          element.addEventListener(eventName, handler);
-          events.set(eventName, handler);
+          element.addEventListener(eventName, (event) =>
+            invokeNext(event, list)
+          );
         });
       });
     }
@@ -532,7 +532,10 @@ function activate(prefix = "atv") {
   }
 
   function updateControllers(root) {
-    let initialCount = Number(allControllers.get(prefix)?.size);
+    let initialCount = 0;
+    if (allControllers?.has(prefix)) {
+      initialCount = Number(allControllers.get(prefix).size);
+    }
     const elements = new Set();
     if (root.matches(controllersSelector)) {
       elements.add(root);
@@ -542,11 +545,13 @@ function activate(prefix = "atv") {
       .forEach((element) => elements.add(element));
     elements.forEach(registerControllers);
 
-    report(
-      allControllers.get(prefix).size - initialCount,
-      "controllers",
-      "found"
-    );
+    if (allControllers.has(prefix)) {
+      report(
+        allControllers.get(prefix).size - initialCount,
+        "controllers",
+        "found"
+      );
+    }
   }
 
   updateControllers(root);

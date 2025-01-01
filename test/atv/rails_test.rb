@@ -1,7 +1,7 @@
 require "test_helper"
 
-class ATV::RailsTest < ActiveSupport::TestCase
+class ATVTest < ActiveSupport::TestCase
   test "it has a version number" do
-    assert ATV::Rails::VERSION
+    assert ATV::VERSION
   end
 end
